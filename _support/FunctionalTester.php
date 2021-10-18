@@ -29,8 +29,8 @@ class FunctionalTester extends \Codeception\Actor
         $this->makeElementScreenshot($elem, $num); // было б круто конечно в память делать, а не забивать I/O диска, но пока я не нашел как
 
         // иногда selenium web driver не делает скрин, а метод проходит. поэтому проверяем наличие скрина и если его нет, то повторно выполняем
-        if (!file_exists($this->screenPath . $num . ".png") && $recCnt <= 2) {
-            takeElemShot($elem, $num, $recCnt + 1); //рекурсия
+        if (!file_exists($this->screenPath . $num . ".png") && $recCnt <= 5) {
+            $this->takeElemShot($elem, $num, $recCnt + 1); //рекурсия
         } else
             $this->assertFileExists($this->screenPath . $num . ".png","can't make screenshot...");
     }
